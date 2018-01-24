@@ -1,5 +1,30 @@
 # Docker
 
+## Introduction
+
+Why should I use docker ?
+
+	* for testers/hackers :
+		* install a complex stack in no time to test your favorite new system. Nothing will be installed into your host.
+	* for developers : 
+		* maintain your dev environment isolated
+		* share your work easily
+		* archived versions
+		* deploy a postgresql, mariadb, redis, rabitmq, ... to test something quickly 
+		* continuous integration : push -> test -> release
+	* for devops :
+	    * package once, deploy everywhere
+	    * deploy complexes apps in no time
+	    * easy scalabily, load-balancing
+		* easier and standardized deployment processes (continous deployment)
+		* built-in orchestrator (swarm)
+
+Nowaday entreprise needs developers/devops to make:
+
+	* scalable applications
+	* well architectured systems (microservices)
+	* built-in security (process isolation, networks management)
+
 ## Get started 
 
 from [docker documentation](https://docs.docker.com/get-started/)
@@ -179,7 +204,9 @@ Public vs Private
 ## Network management
 
 [Docker container networking](https://docs.docker.com/engine/userguide/networking/)
+
 [Docker run](https://docs.docker.com/engine/reference/commandline/run/)
+
 [Docker run reference](https://docs.docker.com/engine/reference/run/)
 
 ```
@@ -203,6 +230,7 @@ cf03ee007fb4        host                host
 ### Embedded DNS server
 
 [Embedded DNS server in user-defined networks](https://docs.docker.com/engine/userguide/networking/configure-dns/)
+
 [Configure container dns](https://docs.docker.com/engine/userguide/networking/default_network/configure-dns/)
 
 Containers in same networks will be able to communicate using their ip and name.
@@ -222,6 +250,7 @@ PING ubuntu1 (172.28.0.2): 56 data bytes
 ## Volume management
 
 [Manage data in docker](https://docs.docker.com/engine/admin/volumes/)
+
 [Use volumes](https://docs.docker.com/engine/admin/volumes/volumes/)
 
 It is possible to store data within the writable layer of a container, but there are some downsides:
@@ -486,10 +515,36 @@ services:
 
 You can now edit your `app.py` file and get result in your browser without rebuilding the image.
 
+### Develop your java app with docker-compose
+
+
 
 # Docker services
 
 [How services work](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/)
+
+## Distributed application architecture
+
+Definition: An application consisting of one **or more** processes running on one **or more** nodes.
+
+## Concepts
+
+### Services over processes
+
+![services diagram](./images/services_over_processes.png)
+
+### Characteristics & requirements
+
+* Bandwidth and latency
+* Ephemeral components
+* Stateless versus stateful
+* Service discovery
+* Load balancing
+* Health checking
+* Logging and monitoring
+* Circuit breakers
+
+### How services work
 
 To deploy an application image when Docker Engine is in swarm mode, you create a service. Frequently a service will be the image for a microservice within the context of some larger application. Examples of services might include an HTTP server, a database, or any other type of executable program that you wish to run in a distributed environment.
 
@@ -501,9 +556,9 @@ When you create a service, you specify which container image to use and which co
   * a rolling update policy
   * the number of replicas of the image to run in the swarm
 
-## Services, tasks and containers
+### Services, tasks and containers
 
-[services diagram](https://docs.docker.com/engine/swarm/images/services-diagram.png)
+![services diagram](https://docs.docker.com/engine/swarm/images/services-diagram.png)
 
 ## Dirty hands
 
