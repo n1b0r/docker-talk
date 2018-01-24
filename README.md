@@ -399,6 +399,93 @@ $ docker logs -f testlog
 172.17.0.1 - - [24/Jan/2018 12:10:34] "GET / HTTP/1.1" 200 -
 ```
 
+# docker-compose
+
+`docker-compose` is a python utility that permit to describe/launch/manage several containers at once on a single host.
+
+## Installation
+
+[Install docker compose](https://docs.docker.com/compose/install/)
+
+```
+$ docker-compose -h
+Define and run multi-container applications with Docker.
+
+Usage:
+  docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
+  docker-compose -h|--help
+
+...
+
+Commands:
+  build              Build or rebuild services
+  bundle             Generate a Docker bundle from the Compose file
+  config             Validate and view the compose file
+  create             Create services
+  down               Stop and remove containers, networks, images, and volumes
+  events             Receive real time events from containers
+  exec               Execute a command in a running container
+  help               Get help on a command
+  kill               Kill containers
+  logs               View output from containers
+  pause              Pause services
+  port               Print the public port for a port binding
+  ps                 List containers
+  pull               Pull service images
+  push               Push service images
+  restart            Restart services
+  rm                 Remove stopped containers
+  run                Run a one-off command
+  scale              Set number of containers for a service
+  start              Start services
+  stop               Stop services
+  top                Display the running processes
+  unpause            Unpause services
+  up                 Create and start containers
+  version            Show the Docker-Compose version information
+``` 
+
+## Dirty hands
+
+
+### Create your first docker-compose stack
+
+Create a `docker-compose.yml` file
+
+```
+version: '2'
+services:
+  web:
+    image: friendlyhello
+    ports:
+      - "4000:80"
+  redis:
+    image: redis
+```
+
+### Deploy it
+
+```
+$ docker-compose up
+```
+
+### Develop your app with docker-compose stack
+
+```
+version: '2'
+services:
+  web:
+    image: friendlyhello
+    volumes:
+      - ./app.py:/app/app.py
+    ports:
+      - "4000:80"
+  redis:
+    image: redis
+```
+
+You can now edit your `app.py` file and get result in your browser without rebuilding the image.
+
 
 # Docker services
 
@@ -546,4 +633,3 @@ $ docker stack deploy -c docker-compose.yml friendlyhello
 ### More readings
 
   * docker overlay network
-  
