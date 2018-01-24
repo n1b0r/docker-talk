@@ -3,7 +3,6 @@
 ## Introduction
 
 Why should I use docker ?
-
 	* for testers/hackers :
 		* install a complex stack in no time to test your favorite new system. Nothing will be installed into your host.
 	* for developers : 
@@ -20,7 +19,6 @@ Why should I use docker ?
 		* built-in orchestrator (swarm)
 
 Nowaday entreprise needs developers/devops to make:
-
 	* scalable applications
 	* well architectured systems (microservices)
 	* built-in security (process isolation, networks management)
@@ -325,7 +323,7 @@ Redis
 
 * app.py 
 
-```
+```python
 from flask import Flask
 from redis import Redis, RedisError
 import os
@@ -481,7 +479,7 @@ Commands:
 
 Create a `docker-compose.yml` file
 
-```
+```yaml
 version: '2'
 services:
   web:
@@ -500,7 +498,7 @@ $ docker-compose up
 
 ### Develop your app with docker-compose stack
 
-```
+```yaml
 version: '2'
 services:
   web:
@@ -568,7 +566,7 @@ When you create a service, you specify which container image to use and which co
 
 Create the `docker-compose.yml` file.
 
-```
+```yaml
 version: "3"
 services:
   web:
@@ -647,7 +645,7 @@ ID                  NAME                          MODE                REPLICAS  
 
 Edit your `docker-compose.yml` file :
 
-```
+```yaml
 version: "3"
 services:
   web:
