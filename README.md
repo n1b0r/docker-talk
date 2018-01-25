@@ -3,6 +3,7 @@
 ## Introduction
 
 Why should I use docker ?
+
 	* for testers/hackers :
 		* install a complex stack in no time to test your favorite new system. Nothing will be installed into your host.
 	* for developers : 
@@ -19,6 +20,7 @@ Why should I use docker ?
 		* built-in orchestrator (swarm)
 
 Nowaday entreprise needs developers/devops to make:
+
 	* scalable applications
 	* well architectured systems (microservices)
 	* built-in security (process isolation, networks management)
