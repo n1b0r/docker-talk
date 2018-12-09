@@ -4,26 +4,31 @@
 
 Why should I use docker ?
 
-	* for testers/hackers :
-		* install a complex stack in no time to test your favorite new system. Nothing will be installed into your host.
-	* for developers : 
-		* maintain your dev environment isolated
-		* share your work easily
-		* archived versions
-		* deploy a postgresql, mariadb, redis, rabitmq, ... to test something quickly 
-		* continuous integration : push -> test -> release
-	* for devops :
-	    * package once, deploy everywhere
-	    * deploy complexes apps in no time
-	    * easy scalabily, load-balancing
-		* easier and standardized deployment processes (continous deployment)
-		* built-in orchestrator (swarm)
+* for testers/hackers :
+	* install a complex stack in no time to test your favorite new system. Nothing will be installed directly into your host system.
+* for developers : 
+	* maintain your dev environment isolated
+	* share your work easily
+	* archived versions
+	* deploy a postgresql, mariadb, redis, rabbitmq, ... to test something quickly 
+	* continuous integration : push -> test -> release
+* for [devops](https://en.wikipedia.org/wiki/DevOps) :
+    * package once, deploy everywhere
+    * deploy complexes apps in no time
+    * easy scalabily, load-balancing
+	* easier and standardized deployment processes (continous deployment)
+	* built-in orchestrator (swarm)
+* for system admins:
+    * simplified / standardised deploy pipelines
+    * orchestration
+    * security
+    
+    
+Nowaday entreprise needs IT teams to make:
 
-Nowaday entreprise needs developers/devops to make:
-
-	* scalable applications
-	* well architectured systems (microservices)
-	* built-in security (process isolation, networks management)
+* scalable applications
+* well architectured systems (microservices)
+* built-in security (process isolation, networks management)
 
 ## Get started 
 
