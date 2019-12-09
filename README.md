@@ -584,7 +584,7 @@ When you create a service, you specify which container image to use and which co
 
 ### Setup
 
-Create the `docker-compose.yml` file.
+Create the `docker-stack.yml` file.
 
 ```yaml
 version: "3"
@@ -616,7 +616,7 @@ docker swarm init
 ### Deploy your service
 
 ```
-$ docker stack deploy -c docker-compose.yml friendlyhello
+$ docker stack deploy -c docker-stack.yml friendlyhello
 Creating network friendlyhello_webnet
 Creating service friendlyhello_web
 ```
@@ -651,10 +651,10 @@ f31r54oyzzs5        friendlyhello_web.2   friendlyhello:latest   robin-XPS      
 
 ### scale a service
 
-Edit the `docker-compose.yml` file to run 4 replicas of your `web` service, and 
+Edit the `docker-stack.yml` file to run 4 replicas of your `web` service, and 
 
 ```
-$ docker stack deploy -c docker-compose.yml friendlyhello
+$ docker stack deploy -c docker-stack.yml friendlyhello
 Updating service friendlyhello_web (id: 31o20ib5hhaa010g22lczquz0)
 $ docker service ls
 ID                  NAME                          MODE                REPLICAS            IMAGE                       PORTS
@@ -663,7 +663,7 @@ ID                  NAME                          MODE                REPLICAS  
 
 ### Visualize a swarm
 
-Edit your `docker-compose.yml` file :
+Edit your `docker-stack.yml` file :
 
 ```yaml
 version: "3"
@@ -700,7 +700,7 @@ networks:
 Then, deploy and browse `http://localhost:8080`
 
 ```
-$ docker stack deploy -c docker-compose.yml friendlyhello
+$ docker stack deploy -c docker-stack.yml friendlyhello
 ```
 
 ### More readings
