@@ -34,7 +34,20 @@ Nowaday entreprise needs IT teams to make:
 
 from [docker documentation](https://docs.docker.com/get-started/)
 
+Docker is a platform for developers and sysadmins to **build, share, and run** applications with containers. The use of containers to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.
+
+Containerization is increasingly popular because containers are:
+ 
+ * **Flexible**: Even the most complex applications can be containerized.
+ * **Lightweight**: Containers leverage and share the host kernel, making them much more efficient in terms of system resources than virtual machines.
+ * **Portable**: You can build locally, deploy to the cloud, and run anywhere.
+ * **Loosely coupled**: Containers are highly self sufficient and encapsulated, allowing you to replace or upgrade one without disrupting others.
+ * **Scalable**: You can increase and automatically distribute container replicas across a datacenter.
+ * **Secure**: Containers apply aggressive constraints and isolations to processes without any configuration required on the part of the user.
+
 ### Basic concepts
+
+Fundamentally, a container is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers. One of the most important aspects of container isolation is that each container interacts with its own, private filesystem; this filesystem is provided by a Docker **image**.
 
 An image is a **lightweight**, **stand-alone**, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
 
@@ -44,12 +57,12 @@ Containers run apps natively on the host machine’s kernel.
 
 ### Container vs virtual machines
 
-![virtual machines diagram](https://www.docker.com/sites/default/files/VM%402x.png)
+![virtual machines diagram](https://docs.docker.com/images/VM%402x.png)
 
 Virtual machines run guest operating systems—note the OS layer in each box. This is resource intensive, and the resulting disk image and application state is an entanglement of OS settings, system-installed dependencies, OS security patches, and other easy-to-lose, hard-to-replicate ephemera.
 
 
-![containers diagram](https://www.docker.com/sites/default/files/Container%402x.png)
+![containers diagram](https://docs.docker.com/images/Container%402x.png)
 
 Containers can share a single kernel, and the only information that needs to be in a container image is the executable and its package dependencies, which never need to be installed on the host system. These processes run like native processes, and you can manage them individually by running commands like docker ps—just like you would run ps on Linux to see active processes. Finally, because they contain all their dependencies, there is no configuration entanglement; a containerized app “runs anywhere.”
 
