@@ -382,7 +382,7 @@ $ docker image ls
 ### Run your image
 
 ```
-$ docker run -p 4000:80 friendlyhello:
+$ docker run -p 4000:80 friendlyhello
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
 ```
 
