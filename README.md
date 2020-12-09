@@ -535,9 +535,26 @@ TIP: you need to change your `app.py` file to include flask auto reloading featu
 
 You can now edit your `app.py` file and get result in your browser without rebuilding the image.
 
-### Develop your java app with docker-compose
+### Play with scalability
 
+```
+$ docker-compose up --scale web=2 -d
+```
 
+You should get troubles associating several services to the port 4000. Update your `docker-compose.yml` file to allow a range of ports : 
+
+```
+ports:
+  - "4000-4010:80"
+```
+
+Using `docker ps` you will be able to get which port is associated to containers.
+
+```
+$ docker ps | grep web
+5facfabe153c        friendlyhello    "python app.py"          39 seconds ago      Up 38 seconds    0.0.0.0:4003->80/tcp    iut_web_1
+216171a2076f        friendlyhello    "python app.py"          39 seconds ago      Up 38 seconds    0.0.0.0:4002->80/tcp    iut_web_2
+```
 
 # Docker services
 
