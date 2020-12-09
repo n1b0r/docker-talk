@@ -531,6 +531,8 @@ services:
     image: redis
 ```
 
+TIP: you need to change your `app.py` file to include flask auto reloading feature : `app.run(host='0.0.0.0', port=80, debug=True)`
+
 You can now edit your `app.py` file and get result in your browser without rebuilding the image.
 
 ### Develop your java app with docker-compose
