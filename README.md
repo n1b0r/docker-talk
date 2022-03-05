@@ -2,17 +2,17 @@
 
 ## Introduction
 
-Why should I use docker ?
+Why should I use docker?
 
-* for testers/hackers :
+* for testers/hackers:
 	* install a complex stack in no time to test your favorite new system. Nothing will be installed directly into your host system.
-* for developers : 
+* for developers: 
 	* maintain your dev environment isolated
 	* share your work easily
 	* archived versions
 	* deploy a postgresql, mariadb, redis, rabbitmq, ... to test something quickly 
-	* continuous integration : push -> test -> release
-* for [devops](https://en.wikipedia.org/wiki/DevOps) :
+	* continuous integration: push -> test -> release
+* for [devops](https://en.wikipedia.org/wiki/DevOps):
     * package once, deploy everywhere
     * deploy complexes apps in no time
     * easy scalabily, load-balancing
@@ -71,7 +71,7 @@ Containers can share a single kernel, and the only information that needs to be 
 
 [docker engine installation](https://docs.docker.com/engine/installation/)
 
-```
+```console
 $ docker --help
 
 ...
@@ -98,7 +98,7 @@ Commands:
 
 ## Test your setup
 
-```
+```console
 docker run hello-world
 ```
 
@@ -107,7 +107,7 @@ docker run hello-world
 [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 
-```
+```console
 docker image push <image>
 docker image pull <image>
 docker image ls
@@ -128,7 +128,7 @@ This instruction is used to set the base image for subsequent instructions. It i
 
 This instruction lets you execute a command on top of an existing layer and create a new layer with the results of command execution.
 
-```
+```dockerfile
 FROM ubuntu
 RUN apt-get update && aupt-get install -y htop
 ```
@@ -137,7 +137,7 @@ RUN apt-get update && aupt-get install -y htop
 
 Specifies the intended command for the image. Whereas RUN actually executes the command during build time.
 
-```
+```dockerfile
 CMD echo "Hello World!"
 ```
 
@@ -145,7 +145,7 @@ CMD echo "Hello World!"
 
 Expose a port
 
-```
+```dockerfile
 EXPOSE 80
 ```
 
@@ -153,7 +153,7 @@ EXPOSE 80
 
 This instruction can be used to set the environment variables in the container.
 
-```
+```dockerfile
 ENV UID=1000
 ```
 
@@ -161,7 +161,7 @@ ENV UID=1000
 
 This instruction is used to copy files and directories from a specified source (from build context) to a destination (in the file system of the container).
 
-```
+```dockerfile
 COPY requirements.txt /app/requirements.txt
 ```
 
@@ -169,15 +169,15 @@ COPY requirements.txt /app/requirements.txt
 
 This instruction is similar to the COPY instruction with few added features like remote URL support in the source field and local-only tar extraction. But if you don’t need a extra features, it is suggested to use COPY as it is more readable.
 
-```
+```dockerfile
 ADD http://www.site.com/downloads/sample.tar.xz /usr/src
 ```
 
-### ENTRYPOINT
+### ENTRYPOINT
 
 You can use this instruction to set the primary command for the image.
 
-```
+```dockerfile
 CMD "Hello World!"
 ENTRYPOINT echo
 ```
@@ -186,7 +186,7 @@ ENTRYPOINT echo
 
 You can use the VOLUME instruction to enable access to a location on the host system from a container. Just pass the path of the location to be accessed.
 
-```
+```dockerfile
 VOLUME /data
 ```
 
@@ -194,7 +194,7 @@ VOLUME /data
 
 This is used to set the UID (or username) to use when running the image.
 
-```
+```dockerfile
 USER www-data
 ```
 
@@ -227,7 +227,7 @@ Public vs Private
 
 [Docker run reference](https://docs.docker.com/engine/reference/run/)
 
-```
+```console
 $ docker network ls
 NETWORK ID          NAME                DRIVER
 7fca4eb8c647        bridge              bridge
@@ -253,7 +253,7 @@ cf03ee007fb4        host                host
 
 Containers in same networks will be able to communicate using their ip and name.
 
-```
+```console
 $ docker network create test-network
 90b16f25d2d0f55e4a9bcf6942b0b3ef069c136a35f007e4d4c55ea1c1f01ecadocker network create test-network
 $ docker run -it --network test-network --name ubuntu1 -d ubuntu:16.04
@@ -278,7 +278,7 @@ It is possible to store data within the writable layer of a container, but there
 
 ### Choose right type of mount
 
-![type of mounts](https://docs.docker.com/engine/admin/volumes/images/types-of-mounts.png)
+![type of mounts](https://user-images.githubusercontent.com/686196/156770965-071b1cae-d994-446e-94a5-2e84fcfcb479.png)
 
   * **Volumes** are stored in a part of the host filesystem which is managed by Docker (/var/lib/docker/volumes/ on Linux). Non-Docker processes should not modify this part of the filesystem. Volumes are the best way to persist data in Docker.
   * **Bind** mounts may be stored anywhere on the host system. They may even be important system files or directories. Non-Docker processes on the Docker host or a Docker container can modify them at any time.
@@ -311,7 +311,7 @@ Create a dedicated directory and put the following files:
 
 * Dockerfile
 
-```
+```dockerfile
 # Use an official Python runtime as a parent image
 FROM python:2.7-slim
 
@@ -372,7 +372,7 @@ if __name__ == "__main__":
 
 ### Build your image
 
-```
+```console
 $ ls
 Dockerfile		app.py			requirements.txt
 $ docker build -t friendlyhello .
@@ -381,20 +381,20 @@ $ docker image ls
 
 ### Run your image
 
-```
+```console
 $ docker run -p 4000:80 friendlyhello
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
 ```
 
 Then visit http://localhost:4000
 
-Or use curl :
+Or use curl:
 
-```
+```console
 $ curl http://localhost:4000
 ```
 
-The output should be similar to :
+The output should be similar to:
 
 ```
 Hello World!
@@ -406,13 +406,13 @@ Visits: cannot connect to Redis, counter disabled
 
 Using embedded docker DNS, we can easily create a redis container and use it in our project.
 
-```
+```console
 $ docker network create my-project-network
 $ docker run -d --network my-project-network --name redis redis
 $ docker run --network my-project-network -p 4000:80 friendlyhello
 ```
 
-You should see something like : 
+You should see something like: 
 
 ```
 Hello World!
@@ -424,7 +424,7 @@ Visits: 1
 
 The `app.py` include a special feature, it can say hello to someone else using an environment variable.
 
-```
+```console
 $ docker run -p 4000:80 -e NAME=Robin friendlyhello
 ```
 
@@ -436,7 +436,7 @@ Visits: cannot connect to Redis, counter disabled
 
 ### Get logs from a container running in detached mode
 
-```
+```console
 $ docker run -p 4000:80 --name testlog -d friendlyhello
 $ docker logs -f testlog 
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
@@ -444,6 +444,12 @@ $ docker logs -f testlog
 172.17.0.1 - - [24/Jan/2018 12:10:33] "GET / HTTP/1.1" 200 -
 172.17.0.1 - - [24/Jan/2018 12:10:34] "GET / HTTP/1.1" 200 -
 172.17.0.1 - - [24/Jan/2018 12:10:34] "GET / HTTP/1.1" 200 -
+```
+
+Stop the detached container
+
+```console
+$ docker stop testlog
 ```
 
 # docker-compose
@@ -454,7 +460,7 @@ $ docker logs -f testlog
 
 [Install docker compose](https://docs.docker.com/compose/install/)
 
-```
+```console
 $ docker-compose -h
 Define and run multi-container applications with Docker.
 
@@ -531,17 +537,17 @@ services:
     image: redis
 ```
 
-TIP: you need to change your `app.py` file to include flask auto reloading feature : `app.run(host='0.0.0.0', port=80, debug=True)`
+TIP: you need to change your `app.py` file to include flask auto reloading feature: `app.run(host='0.0.0.0', port=80, debug=True)`
 
 You can now edit your `app.py` file and get result in your browser without rebuilding the image.
 
 ### Play with scalability
 
-```
+```console
 $ docker-compose up --scale web=2 -d
 ```
 
-You should get troubles associating several services to the port 4000. Update your `docker-compose.yml` file to allow a range of ports : 
+You should get troubles associating several services to the port 4000. Update your `docker-compose.yml` file to allow a range of ports: 
 
 ```
 ports:
@@ -550,7 +556,7 @@ ports:
 
 Using `docker ps` you will be able to get which port is associated to containers.
 
-```
+```console
 $ docker ps | grep web
 5facfabe153c        friendlyhello    "python app.py"          39 seconds ago      Up 38 seconds    0.0.0.0:4003->80/tcp    iut_web_1
 216171a2076f        friendlyhello    "python app.py"          39 seconds ago      Up 38 seconds    0.0.0.0:4002->80/tcp    iut_web_2
@@ -628,19 +634,19 @@ networks:
 
 ### Init the swarm
 
-```
-docker swarm init
+```console
+$ docker swarm init
 ```
 
 ### Deploy your service
 
-```
+```console
 $ docker stack deploy -c docker-stack.yml friendlyhello
 Creating network friendlyhello_webnet
 Creating service friendlyhello_web
 ```
 
-`http://localhost:4000` should output as usual :
+`http://localhost:4000` should output as usual:
 
 ```
 Hello World!
@@ -653,7 +659,7 @@ Refresh the browser several times and you should see that your service is actual
 
 ### list services 
 
-```
+```console
 $ docker service ls
 ID                  NAME                          MODE                REPLICAS            IMAGE                       PORTS
 31o20ib5hhaa        friendlyhello_web             replicated          2/2                 friendlyhello:latest        *:4000->80/tcp
@@ -661,7 +667,7 @@ ID                  NAME                          MODE                REPLICAS  
 
 ### list containers of a service
 
-```
+```console
 $ docker service ps friendlyhello_web 
 ID                  NAME                  IMAGE                  NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
 dj7rt17busr3        friendlyhello_web.1   friendlyhello:latest   robin-XPS           Running             Running 6 minutes
@@ -672,7 +678,7 @@ f31r54oyzzs5        friendlyhello_web.2   friendlyhello:latest   robin-XPS      
 
 Edit the `docker-stack.yml` file to run 4 replicas of your `web` service, and 
 
-```
+```console
 $ docker stack deploy -c docker-stack.yml friendlyhello
 Updating service friendlyhello_web (id: 31o20ib5hhaa010g22lczquz0)
 $ docker service ls
@@ -682,7 +688,7 @@ ID                  NAME                          MODE                REPLICAS  
 
 ### Visualize a swarm
 
-Edit your `docker-stack.yml` file :
+Edit your `docker-stack.yml` file:
 
 ```yaml
 version: "3"
@@ -718,7 +724,7 @@ networks:
 
 Then, deploy and browse `http://localhost:8080`
 
-```
+```console
 $ docker stack deploy -c docker-stack.yml friendlyhello
 ```
 
